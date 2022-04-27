@@ -1,0 +1,16 @@
+/** 
+ * Multiplexor Gate,选择器.
+ * 	if sel = 0 out = a;
+ *	else out = b;
+ */
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Nand(a = sel, b = sel, out = nots);
+    Nand(a = a, b = nots, out = notx);
+    Nand(a = sel, b = b, out = noty);
+	Nand(a = notx, b = noty, out = out);
+}
